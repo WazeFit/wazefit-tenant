@@ -471,7 +471,7 @@ export default function FichasPage() {
             <DialogDescription>Selecione o aluno para atribuir esta ficha.</DialogDescription>
           </DialogHeader>
           <div className="py-4">
-            <Select value={assignAlunoId} onValueChange={setAssignAlunoId}>
+            <Select value={assignAlunoId} onValueChange={(v: string | null) => setAssignAlunoId(v || "")}>
               <SelectTrigger><SelectValue placeholder="Selecione o aluno" /></SelectTrigger>
               <SelectContent>
                 {alunos.map((a) => (

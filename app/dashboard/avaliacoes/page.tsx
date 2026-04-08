@@ -180,7 +180,7 @@ export default function AvaliacoesPage() {
             className="pl-10"
           />
         </div>
-        <Select value={tipoFilter} onValueChange={setTipoFilter}>
+        <Select value={tipoFilter} onValueChange={(v: string | null) => setTipoFilter(v || "")}>
           <SelectTrigger className="w-48">
             <SelectValue placeholder="Tipo" />
           </SelectTrigger>

@@ -121,7 +121,7 @@ export default function CalendarioPage() {
 
       {/* Student selector */}
       <div className="max-w-sm">
-        <Select value={selectedAluno} onValueChange={setSelectedAluno}>
+        <Select value={selectedAluno} onValueChange={(v: string | null) => setSelectedAluno(v || "")}>
           <SelectTrigger>
             <SelectValue placeholder="Selecione um aluno" />
           </SelectTrigger>

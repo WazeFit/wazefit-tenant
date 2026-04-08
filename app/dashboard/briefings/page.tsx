@@ -192,7 +192,7 @@ export default function BriefingsPage() {
             <DialogDescription>Selecione o aluno para criar o briefing.</DialogDescription>
           </DialogHeader>
           <div className="py-4">
-            <Select value={createAlunoId} onValueChange={setCreateAlunoId}>
+            <Select value={createAlunoId} onValueChange={(v: string | null) => setCreateAlunoId(v || "")}>
               <SelectTrigger><SelectValue placeholder="Selecione o aluno" /></SelectTrigger>
               <SelectContent>
                 {alunos.map((a) => (

@@ -206,7 +206,7 @@ export default function IAPage() {
         </Card>
       )}
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={(v: string | null) => setActiveTab(v || "")}>
         <TabsList>
           <TabsTrigger value="treino" className="gap-2">
             <Dumbbell className="w-4 h-4" /> Gerar Treino

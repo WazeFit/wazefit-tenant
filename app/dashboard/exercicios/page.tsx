@@ -195,7 +195,7 @@ export default function ExerciciosPage() {
             className="pl-10"
           />
         </div>
-        <Select value={grupoFilter} onValueChange={setGrupoFilter}>
+        <Select value={grupoFilter} onValueChange={(v: string | null) => setGrupoFilter(v || "")}>
           <SelectTrigger className="w-48">
             <SelectValue placeholder="Grupo muscular" />
           </SelectTrigger>

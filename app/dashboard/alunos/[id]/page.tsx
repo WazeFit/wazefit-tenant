@@ -156,7 +156,7 @@ export default function AlunoDetailPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={(v: string | null) => setActiveTab(v || "")}>
         <TabsList>
           <TabsTrigger value="overview">Visao Geral</TabsTrigger>
           <TabsTrigger value="fichas">Fichas</TabsTrigger>
