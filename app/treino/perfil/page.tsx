@@ -33,20 +33,19 @@ export default function PerfilPage() {
   const [stats, setStats] = useState<{ pontos: number; treinos: number }>({ pontos: 0, treinos: 0 });
 
   useEffect(() => {
-    loadFromStorage();
-    setReady(true);
-
-    // Try to get stats from localStorage
-    try {
-      const userStr = localStorage.getItem("wf_user");
-      if (userStr) {
-        const u = JSON.parse(userStr);
-        setStats({
-          pontos: u.pontos ?? 0,
-          treinos: u.total_treinos ?? 0,
-        });
-      }
-    } catch { /* ignore */ }
+    const loaded = loadFromStorage();
+    if (loaded) {
+      try {
+        const userStr = localStorage.getItem("wf_user");
+        if (userStr) {
+          const u = JSON.parse(userStr);
+          setStats({ pontos: u.pontos ?? 0, treinos: u.total_treinos ?? 0 });
+        }
+      } catch { /* ignore */ }
+    }
+    // Use microtask to avoid synchronous setState in effect
+    queueMicrotask(() => setReady(true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleLogout() {
