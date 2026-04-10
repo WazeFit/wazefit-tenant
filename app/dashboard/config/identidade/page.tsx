@@ -88,19 +88,15 @@ export default function IdentidadePage() {
     }
 
     setUploading(true);
-
-    // Fallback sem endpoint /media: encodar como data URL para preview imediato
-    // (ate o backend ter upload para R2, o tenant fica com a logo embutida no config).
-    const reader = new FileReader();
-    reader.onload = () => {
-      setConfig((c) => ({ ...c, logo_url: reader.result as string }));
+    try {
+      // Upload real para R2 via /api/v1/tenant/branding/upload
+      const result = await api.tenant.uploadBranding("logo", file);
+      setConfig((c) => ({ ...c, logo_url: result.url }));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Nao foi possivel enviar a logo.");
+    } finally {
       setUploading(false);
-    };
-    reader.onerror = () => {
-      setError("Nao foi possivel ler o arquivo.");
-      setUploading(false);
-    };
-    reader.readAsDataURL(file);
+    }
   }
 
   function triggerUpload() {

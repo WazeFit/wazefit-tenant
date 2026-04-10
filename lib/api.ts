@@ -319,6 +319,22 @@ export const api = {
       request<{ available: boolean; slug?: string; error?: string }>("GET", `/api/v1/tenant/slug-available?slug=${encodeURIComponent(slug)}`),
     updateSlug: (slug: string) =>
       request<{ slug: string; painel_url: string; aviso?: string }>("PUT", "/api/v1/tenant/slug", { slug }),
+    uploadBranding: async (tipo: "logo" | "favicon", file: File): Promise<{ url: string; tipo: string; key: string }> => {
+      const form = new FormData();
+      form.append("tipo", tipo);
+      form.append("file", file);
+      const token = typeof window !== "undefined" ? localStorage.getItem("wf_token") : null;
+      const res = await fetch(`${BASE}/api/v1/tenant/branding/upload`, {
+        method: "POST",
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        body: form,
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new ApiError(res.status, data);
+      }
+      return res.json();
+    },
   },
 
   feed: {
