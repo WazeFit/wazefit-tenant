@@ -136,7 +136,7 @@ export default function DominiosPage() {
                   onKeyDown={(e) => e.key === "Enter" && handleAdd()}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Adicione um registro CNAME apontando para cname.wazefit.com
+                  Adicione um registro CNAME apontando para <strong className="font-mono text-foreground">app.wazefit.com</strong>
                 </p>
               </div>
               <Button className="w-full" onClick={handleAdd} disabled={adding || !newDomain.trim()}>

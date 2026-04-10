@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -65,7 +66,15 @@ export default function LoginPage() {
               <Input id="email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
             <div className="space-y-2">
-              <label htmlFor="senha" className="text-sm font-medium">Senha</label>
+              <div className="flex items-center justify-between">
+                <label htmlFor="senha" className="text-sm font-medium">Senha</label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs text-primary hover:underline"
+                >
+                  Esqueci minha senha
+                </Link>
+              </div>
               <Input id="senha" type="password" placeholder="Sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
@@ -73,6 +82,12 @@ export default function LoginPage() {
               {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
               Entrar
             </Button>
+            <p className="text-xs text-center text-muted-foreground pt-2">
+              Esqueceu o email de acesso?{" "}
+              <Link href="/forgot-password" className="text-primary hover:underline">
+                Recuperar acesso
+              </Link>
+            </p>
           </form>
         </CardContent>
       </Card>
