@@ -33,7 +33,7 @@ function ResetForm() {
       const res = await fetch(`${API_URL}/api/v1/auth/reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, senha }),
+        body: JSON.stringify({ token, nova_senha: senha }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
