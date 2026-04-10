@@ -315,6 +315,10 @@ export const api = {
   tenant: {
     config: () => request<{ config: Record<string, string | null> }>("GET", "/api/v1/tenant/config"),
     updateConfig: (data: Record<string, string | null>) => request<void>("PUT", "/api/v1/tenant/config", data),
+    slugAvailable: (slug: string) =>
+      request<{ available: boolean; slug?: string; error?: string }>("GET", `/api/v1/tenant/slug-available?slug=${encodeURIComponent(slug)}`),
+    updateSlug: (slug: string) =>
+      request<{ slug: string; painel_url: string; aviso?: string }>("PUT", "/api/v1/tenant/slug", { slug }),
   },
 
   feed: {
