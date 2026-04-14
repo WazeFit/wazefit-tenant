@@ -15,36 +15,36 @@ import {
 
 const nav = [
   { group: "Principal", items: [
-    { label: "Dashboard", href: "/", icon: LayoutDashboard },
-    { label: "Alunos", href: "/alunos", icon: Users },
+    { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { label: "Alunos", href: "/dashboard/alunos", icon: Users },
   ]},
   { group: "Gestao", items: [
-    { label: "Exercicios", href: "/exercicios", icon: Dumbbell },
-    { label: "Fichas", href: "/fichas", icon: FileText },
-    { label: "Calendario", href: "/calendario", icon: Calendar },
-    { label: "Periodizacao", href: "/periodizacao", icon: Target },
+    { label: "Exercicios", href: "/dashboard/exercicios", icon: Dumbbell },
+    { label: "Fichas", href: "/dashboard/fichas", icon: FileText },
+    { label: "Calendario", href: "/dashboard/calendario", icon: Calendar },
+    { label: "Periodizacao", href: "/dashboard/periodizacao", icon: Target },
   ]},
   { group: "Comunicacao", items: [
-    { label: "Chat", href: "/chat", icon: MessageSquare },
-    { label: "Comunidade", href: "/comunidade", icon: Heart },
+    { label: "Chat", href: "/dashboard/chat", icon: MessageSquare },
+    { label: "Comunidade", href: "/dashboard/comunidade", icon: Heart },
   ]},
   { group: "Saude", items: [
-    { label: "Nutricao", href: "/nutricao", icon: Apple },
-    { label: "Avaliacoes", href: "/avaliacoes", icon: ClipboardList },
-    { label: "Briefings", href: "/briefings", icon: ClipboardList },
+    { label: "Nutricao", href: "/dashboard/nutricao", icon: Apple },
+    { label: "Avaliacoes", href: "/dashboard/avaliacoes", icon: ClipboardList },
+    { label: "Briefings", href: "/dashboard/briefings", icon: ClipboardList },
   ]},
   { group: "IA", items: [
-    { label: "Gerar com IA", href: "/ia", icon: Brain },
+    { label: "Gerar com IA", href: "/dashboard/ia", icon: Brain },
   ]},
   { group: "Negocio", items: [
-    { label: "Financeiro", href: "/financeiro", icon: DollarSign },
-    { label: "Analytics", href: "/analytics", icon: BarChart3 },
-    { label: "Ranking", href: "/ranking", icon: Trophy },
+    { label: "Financeiro", href: "/dashboard/financeiro", icon: DollarSign },
+    { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
+    { label: "Ranking", href: "/dashboard/ranking", icon: Trophy },
   ]},
   { group: "Config", items: [
-    { label: "Identidade", href: "/config/identidade", icon: Palette },
-    { label: "Dominios", href: "/config/dominios", icon: Globe },
-    { label: "Desafios", href: "/config/desafios", icon: Sparkles },
+    { label: "Identidade", href: "/dashboard/config/identidade", icon: Palette },
+    { label: "Dominios", href: "/dashboard/config/dominios", icon: Globe },
+    { label: "Desafios", href: "/dashboard/config/desafios", icon: Sparkles },
   ]},
 ];
 
@@ -74,7 +74,7 @@ export function ExpertSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {group.items.map((item) => {
-                  const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
                   return (
                     <SidebarMenuItem key={item.href}>
                       <SidebarMenuButton isActive={isActive} onClick={() => router.push(item.href)}>
